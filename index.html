@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قصص القديسين</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/6b7d4f76b5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="loading">
+<div class="cross">✝</div>
+<h1>قصص القديسين</h1>
+<p id="loadingText">جارٍ التحميل...</p>
+</div>
+
+<div id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<h2>✝ القائمة</h2>
+<button onclick="closeMenu()">✕</button>
+</div>
+<ul>
+<li id="homeBtn">🏠 الرئيسية</li>
+<li id="searchBtn">🔍 البحث</li>
+<li id="favoritesBtn">⭐ المفضلة</li>
+<li id="continueReadingBtn">📖 أكمل القراءة</li>
+<li id="themeToggle" onclick="toggleDarkMode()">
+    🌙 الوضع الليلي
+</li>
+<li onclick="window.location='about.html'">ℹ️ عن البرنامج</li>
+</ul>
+</div>
+
+<div id="app">
+<header>
+<button class="menuButton" onclick="openMenu()">☰</button>
+<h1>✝ القديسون ✝</h1>
+<p id="verse">"طوبى لأنقياء القلب لأنهم يعاينون الله."</p>
+</header>
+
+<div class="searchBox">
+<input type="text" id="search" placeholder="ابحث عن قديس...">
+</div>
+
+<p id="noResults" style="display:none;text-align:center;font-size:20px;margin:25px;color:#777;">
+🔍 لا توجد نتائج.
+</p>
+
+<section class="cards">
+
+<div class="card" data-saint="george">
+
+    <span class="favorite">🤍</span>
+
+    <img src="images/george.png">
+
+    <h2>القديس مارجرجس</h2>
+
+</div>
+
+<div class="card" data-saint="abanoub">
+
+    <span class="favorite">🤍</span>
+
+    <img src="images/abanoub.png">
+
+    <h2>القديس أبانوب</h2>
+
+</div>
+
+<div class="card" data-saint="marmina">
+
+    <span class="favorite">🤍</span>
+
+    <img src="images/marmina.png">
+
+    <h2>القديس مارمينا</h2>
+
+</div>
+
+<div class="card" data-saint="demiana">
+
+    <span class="favorite">🤍</span>
+
+    <img src="images/demiana.png">
+
+    <h2>القديسة دميانة</h2>
+
+</div>
+
+<div class="card" data-saint="antonios">
+
+    <span class="favorite">🤍</span>
+
+    <img src="images/antonios.png">
+
+    <h2>القديس الأنبا أنطونيوس</h2>
+
+</div>
+
+<div class="card" data-saint="peter">
+
+    <span class="favorite">🤍</span>
+
+    <img src="images/peter.png">
+
+    <h2>القديس بطرس الرسول</h2>
+
+</div>
+
+</section>
+
+<p id="noFavorites" style="display:none;text-align:center;font-size:22px;margin:40px;color:#777;">
+⭐ لا توجد قصص في المفضلة.
+</p>
+
+<p id="noStories" style="display:none;text-align:center;font-size:24px;margin:40px;color:#777;">
+🎉 مبروك! لقد أنهيت جميع قصص القديسين.<br><br>
+❤️ ربنا معاك دايمًا.
+</p>
+
+<div class="continueBox" id="continueBox">
+
+<h3>📖 أكمل القراءة</h3>
+
+<p id="continueText">
+
+لا توجد قصة قيد القراءة.
+
+</p>
+
+<button id="continueBtn" style="display:none;">
+
+متابعة القراءة
+
+</button>
+
+</div>
+
+<div class="progressSection">
+
+    <h3>📚 تقدمك</h3>
+
+    <p id="progressText">0 من 6 قصص</p>
+
+    <div class="homeProgress">
+
+        <div id="homeProgressBar"></div>
+
+    </div>
+
+</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
