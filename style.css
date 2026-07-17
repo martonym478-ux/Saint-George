@@ -1,0 +1,918 @@
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{
+background:#efe3c5;
+background-image:radial-gradient(rgba(120,90,40,.08) 1px,transparent 1px);
+background-size:22px 22px;
+color:#4b3823;
+}
+#loading{
+position:fixed;inset:0;background:#efe3c5;display:flex;flex-direction:column;
+justify-content:center;align-items:center;z-index:9999;
+animation:hideSplash .8s ease 2s forwards;
+}
+.cross{font-size:70px;color:#b48a2c;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes hideSplash{to{opacity:0;visibility:hidden}}
+header{text-align:center;padding:30px 20px;position:relative}
+.menuButton{
+position:absolute;right:20px;top:25px;border:none;background:#b48a2c;
+color:#fff;padding:10px 15px;border-radius:10px;font-size:22px;cursor:pointer}
+#verse{margin-top:10px;color:#7a5d34}
+.searchBox{display:flex;justify-content:center;margin:20px}
+.searchBox input{width:min(650px,90%);padding:15px;border-radius:30px;border:2px solid #d6bb79;font-size:18px}
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,220px));
+justify-content:center;
+gap:25px;
+padding:30px;
+max-width:1200px;
+margin:auto;
+}
+.card{
+background:#fbf6eb;border-radius:18px;padding:15px;
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+cursor:pointer;transition:.35s;position:relative;overflow:hidden
+}
+.card:before{
+content:"";position:absolute;top:-120%;left:-50%;
+width:45%;height:300%;
+background:linear-gradient(transparent,rgba(255,255,255,.7),transparent);
+transform:rotate(25deg);transition:.7s}
+.card:hover:before{left:140%}
+.card:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(180,138,44,.35)}
+.card img{width:100%;height:270px;object-fit:cover;border-radius:14px;transition:.35s}
+.card:hover img{transform:scale(1.05)}
+.card h2{text-align:center;margin-top:12px}
+.continueBox{
+max-width:900px;margin:20px auto 40px;background:#fbf6eb;
+padding:20px;border-right:6px solid #b48a2c;border-radius:15px}
+.sidebar{
+position:fixed;top:0;right:-320px;width:300px;height:100%;
+background:#faf3e3;transition:.4s;padding:25px;z-index:1000;
+box-shadow:-10px 0 25px rgba(0,0,0,.15)}
+.sidebar.open{right:0}
+.sidebar ul{list-style:none;margin-top:20px}
+.sidebar li{padding:15px;border-radius:10px;cursor:pointer}
+.sidebar li:hover{background:#ead7aa}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center}
+.sidebar-header button{border:none;background:none;font-size:24px;cursor:pointer}
+#overlay{
+position:fixed;inset:0;background:rgba(0,0,0,.35);
+display:none;z-index:900}
+#overlay.show{display:block}
+@media(max-width:768px){
+.card img{height:220px}
+header h1{font-size:30px}
+}
+/* ===========================
+   صفحة القصة
+=========================== */
+
+.story-page{
+    width:100%;
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+.story-image{
+    width:220px;
+    height:300px;
+    object-fit:cover;
+    border-radius:20px;
+    border:4px solid #d4af37;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    margin-bottom:20px;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#ddd;
+    border-radius:30px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+#progressBar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#b48a2c,#ffd700);
+    transition:0.4s;
+}
+
+#pageNumber{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+    width:100%;
+    text-align:center;
+}
+
+.story-box{
+    background:#fbf6eb;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    text-align:right;
+    line-height:2;
+    font-size:22px;
+    margin-bottom:25px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.buttons button,
+.share button,
+.back button{
+    flex:1;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#b48a2c;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.buttons button:hover,
+.share button:hover,
+.back button:hover{
+    background:#8f6d1d;
+}
+
+.virtues,
+.verseBox{
+    background:#fbf6eb;
+    padding:20px;
+    border-radius:20px;
+    margin-bottom:20px;
+    text-align:right;
+}
+
+.virtues ul{
+    margin-top:10px;
+    padding-right:20px;
+}
+
+.virtues li{
+    margin:8px 0;
+    font-size:20px;
+}
+.doneBadge{
+
+position:absolute;
+
+top:12px;
+
+right:12px;
+
+font-size:24px;
+
+z-index:5;
+
+}
+.continueBox button{
+
+margin-top:15px;
+
+padding:12px 25px;
+
+border:none;
+
+background:#b48a2c;
+
+color:white;
+
+font-size:17px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.continueBox button:hover{
+
+transform:scale(1.05);
+
+}
+/* شاشة إنهاء القصة */
+
+.finishBox{
+
+display:none;
+
+position:fixed;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:90%;
+
+max-width:450px;
+
+background:#fbf6eb;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 0 30px rgba(0,0,0,.4);
+
+border:3px solid #d6bb79;
+
+z-index:9999;
+
+animation:fadeIn .4s;
+
+}
+
+.finishBox h2{
+
+font-size:32px;
+
+margin-bottom:15px;
+
+color:#2e8b57;
+
+}
+
+.finishBox h3{
+
+margin:20px 0;
+
+color:#b48a2c;
+
+}
+
+.finishBox button{
+
+padding:14px 28px;
+
+border:none;
+
+background:#b48a2c;
+
+color:white;
+
+border-radius:12px;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.finishBox button:hover{
+
+transform:scale(1.05);
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+#finishOverlay{
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.45);
+
+z-index:9998;
+
+}
+.finishBox button{
+display:block;
+width:100%;
+margin:12px 0;
+padding:14px;
+border:none;
+border-radius:12px;
+font-size:18px;
+cursor:pointer;
+background:#b48a2c;
+color:#fff;
+transition:.3s;
+}
+
+.finishBox button:hover{
+transform:scale(1.03);
+}
+/* الوضع الليلي */
+
+body.dark{
+
+background:#1e1e1e;
+
+color:white;
+
+}
+
+body.dark .card{
+
+background:#2b2b2b;
+
+color:white;
+
+}
+
+body.dark .continueBox{
+
+background:#2b2b2b;
+
+color:white;
+
+}
+
+body.dark .sidebar{
+
+background:#2b2b2b;
+
+color:white;
+
+}
+
+body.dark .story-box{
+
+background:#2b2b2b;
+
+color:white;
+
+}
+
+body.dark .virtues{
+
+background:#2b2b2b;
+
+color:white;
+
+}
+
+body.dark .verseBox{
+
+background:#2b2b2b;
+
+color:white;
+
+}
+/* انتقال بين الصفحات */
+
+body.fade-out{
+
+opacity:0;
+
+}
+
+body{
+    background:#efe3c5;
+    background-image:radial-gradient(rgba(120,90,40,.08) 1px,transparent 1px);
+    background-size:22px 22px;
+    color:#4b3823;
+    transition:opacity .35s ease;
+}
+.favorite{
+
+position:absolute;
+
+top:12px;
+
+left:12px;
+
+font-size:24px;
+
+cursor:pointer;
+
+transition:.25s;
+
+z-index:10;
+
+}
+
+.favorite:hover{
+
+transform:scale(1.25);
+
+}
+
+.favorite.active{
+
+transform:scale(1.3);
+
+animation:pop .3s;
+}
+
+@keyframes pop{
+
+0%{transform:scale(.5);}
+
+60%{transform:scale(1.4);}
+
+100%{transform:scale(1.3);}
+
+}
+.progressSection{
+
+margin-top:20px;
+
+}
+
+.homeProgress{
+
+width:100%;
+
+height:18px;
+
+background:#ddd;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-top:10px;
+
+}
+
+#homeProgressBar{
+
+width:0%;
+
+height:100%;
+
+background:#b48a2c;
+
+transition:.5s;
+
+border-radius:20px;
+
+}
+
+#progressText{
+
+margin-top:8px;
+
+font-weight:bold;
+
+}
+
+.aboutPage{
+
+max-width:800px;
+
+margin:60px auto;
+
+background:#fbf6eb;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+text-align:center;
+
+}
+
+.aboutPage h1{
+
+margin-bottom:25px;
+
+color:#b48a2c;
+
+}
+
+.aboutPage p{
+
+font-size:20px;
+
+line-height:2;
+
+margin-bottom:20px;
+
+}
+
+.aboutPage button{
+
+margin-top:20px;
+
+padding:12px 25px;
+
+border:none;
+
+border-radius:12px;
+
+background:#b48a2c;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.aboutPage button:hover{
+
+transform:scale(1.05);
+
+}
+
+/* ===========================
+   المديح
+=========================== */
+
+#hymnText{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.hymnRow{
+    display:grid;
+    gap:20px;
+    text-align:center;
+    align-items:center;
+    font-size:20px;
+    font-weight:600;
+    line-height:2.2;
+}
+
+.hymnRow span{
+
+    display:block;
+
+    padding:8px;
+
+}
+
+body.dark .hymnRow span{
+
+    color:white;
+
+}
+
+@media (max-width:900px){
+
+    .hymnRow{
+        gap:10px;
+    }
+
+    .hymnRow span{
+        font-size:16px;
+        line-height:1.8;
+        padding:4px;
+    }
+
+}
+
+.hymnBox{
+
+    background:#fbf6eb;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+}
+
+#playHymn,
+#showHymn{
+
+    margin-top:15px;
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#b48a2c;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+.share,
+.back{
+    margin-top:25px;
+    text-align:center;
+}
+
+.share button,
+.back button{
+    display:inline-block;
+    width:100%;
+    max-width:420px;
+}
+
+.developer{
+    text-align:center;
+    margin:20px auto 12px;
+    font-size:19px;
+    font-weight:700;
+    color:#b8860b;
+    text-shadow:0 1px 2px rgba(0,0,0,.15);
+    font-family:"Georgia", serif;
+}
+
+/* ===== إصلاح المديح في الوضع الليلي ===== */
+
+body.dark .hymnBox{
+    background:#2b2b2b;
+    color:white;
+}
+
+body.dark #hymnText{
+    color:white;
+}
+
+body.dark .hymnRow{
+    color:white;
+}
+
+body.dark .audioPlayer{
+    background:#2b2b2b;
+    color:white;
+}
+
+body.dark #currentTime,
+body.dark #duration,
+body.dark #hymnTitle{
+    color:white;
+}
+
+.hymnRow{
+    width:100%;
+}
+
+.hymnRow span{
+    white-space:pre-line;
+    word-break:keep-all;
+    overflow-wrap:normal;
+}
+
+.story-page{
+    width:100%;
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+    overflow:hidden;
+}
+
+#hymnContainer{
+    width:100%;
+}
+
+#hymnText{
+    width:100%;
+}
+
+.hymnRow{
+    width:100%;
+    display:grid;
+    justify-items:center;
+}
+
+.hymnRow.columns-3{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+.hymnRow.columns-4{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+.story-page{
+    overflow-x:auto;
+}
+
+#hymnContainer{
+    overflow-x:auto;
+}
+
+#hymnText{
+    min-width:100%;
+}
+
+html,body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+.story-page{
+    width:min(900px,100%);
+    margin:40px auto;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+.hymnBox{
+    width:100%;
+    overflow-x:hidden;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+.story-page{
+    margin-inline:auto;
+}
+
+img{
+    max-width:100%;
+}
+
+html,
+body{
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+.story-page{
+    width:min(900px,100%);
+    margin:40px auto;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+.story-box,
+.progress,
+.buttons,
+.virtues,
+.verseBox,
+.hymnBox{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+}
+
+.story-page{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.story-page > *{
+    width:100%;
+}
+
+.story-image{
+    width:220px;
+    max-width:100%;
+}
+
+#saintName{
+    text-align:center;
+}
+
+.progress,
+.story-box,
+.buttons,
+.virtues,
+.verseBox,
+.hymnBox,
+.share,
+.back{
+    width:100%;
+}
+
+/* ===== Audio Player ===== */
+
+.audioPlayer{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    padding:14px 18px;
+    background:#fbf6eb;
+    border-radius:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+#playPause,
+#restartAudio{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:50%;
+    background:#b48a2c;
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    transition:.25s;
+    flex-shrink:0;
+}
+
+#playPause:hover,
+#restartAudio:hover{
+    transform:scale(1.08);
+    background:#8f6d1d;
+}
+
+#audioProgress{
+    flex:1;
+    accent-color:#b48a2c;
+}
+
+#currentTime,
+#duration{
+    min-width:42px;
+    text-align:center;
+    font-weight:bold;
+    color:#6d4c17;
+}
+
+@media (max-width:768px){
+
+    .story-image{
+        width:170px;
+        height:auto;
+    }
+
+    #saintName{
+        font-size:30px;
+        text-align:center;
+    }
+
+    .story-box{
+        font-size:19px;
+        line-height:1.9;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .buttons button{
+        width:100%;
+    }
+
+    #pageNumber{
+        text-align:center;
+    }
+}

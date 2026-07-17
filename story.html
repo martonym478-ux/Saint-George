@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>قصة القديس</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="story-page">
+
+    <!-- صورة القديس -->
+
+    <img id="saintImage" class="story-image">
+
+    <!-- اسم القديس -->
+
+    <h1 id="saintName"></h1>
+
+    <!-- شريط التقدم -->
+
+    <div class="progress">
+
+        <div id="progressBar"></div>
+
+    </div>
+
+    <!-- رقم الجزء -->
+
+    <div id="pageNumber">
+
+        1 / 1
+
+    </div>
+
+    <!-- القصة -->
+
+    <div class="story-box">
+
+        <p id="storyText"></p>
+
+    </div>
+
+    <!-- الأزرار -->
+
+    <div class="buttons">
+
+        <button id="prevBtn">
+
+            ◀ السابق
+
+        </button>
+
+        <button id="nextBtn">
+
+            التالي ▶
+
+        </button>
+
+    </div>
+
+    <!-- الفضائل -->
+
+    <div class="virtues">
+
+        <h2>
+
+            🌿 الفضائل المستفادة
+
+        </h2>
+
+        <ul id="virtuesList">
+
+        </ul>
+
+    </div>
+
+    <!-- الآية -->
+
+    <div class="verseBox">
+
+        <h2>
+
+            🕊️ آية من الكتاب المقدس
+
+        </h2>
+
+        <p id="bibleVerse"></p>
+
+    </div>
+
+<div class="hymnBox">
+
+    <h2 id="hymnTitle"></h2>
+
+    <button id="showHymn">
+        📖 عرض المديح
+    </button>
+
+    <div id="hymnContainer" style="display:none;">
+
+        <div id="hymnText"></div>
+
+    </div>
+
+    <br><br>
+
+<div class="audioPlayer">
+
+    <button id="playPause">▶️</button>
+
+    <span id="currentTime">0:00</span>
+
+    <input
+        type="range"
+        id="audioProgress"
+        value="0"
+        min="0"
+        max="100"
+    >
+
+    <span id="duration">5:33</span>
+
+    <button id="restartAudio">🔄</button>
+
+</div>
+
+<audio id="hymnAudio"></audio>
+
+</div>
+
+    <!-- مشاركة -->
+
+    <div class="share">
+
+        <button id="shareStory">
+
+            📤 مشاركة القصة
+
+        </button>
+
+    </div>
+
+    <!-- شاشة إنهاء القصة -->
+ <div id="finishOverlay" style="display:none;"></div>
+ 
+<div id="finishBox" class="finishBox" style="display:none;">
+
+<h2>🎉 أحسنت!</h2>
+
+<p>
+
+لقد أنهيت قراءة هذه القصة.
+
+</p>
+
+<h3>
+
+❤️ ربنا معاك دايمًا.
+
+</h3>
+
+<button id="newStoryBtn">
+📖 اقرأ قصة جديدة
+</button>
+
+<button id="restartStory">
+🔄 إعادة القراءة
+</button>
+
+<button onclick="window.location='index.html'">
+🏠 العودة للرئيسية
+
+</button>
+
+</div>
+
+    <!-- رجوع -->
+
+    <div class="back">
+
+        <button onclick="window.location='index.html'">
+
+            🏠 العودة للرئيسية
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
